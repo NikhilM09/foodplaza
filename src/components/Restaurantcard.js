@@ -1,24 +1,20 @@
+import { img_url } from "../utils/config";
 
-
-
-
-const img_url = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
-
-const Restaurantcard = ({rating, cuisines, location, name, cloudinaryImageId}) => {
-    // const {name, rating, cuisines, location} = props;
-    return(
-        <div className="custom_card pb-2">
+const Restaurantcard = ({name, avgRating, cuisines, locality, cloudinaryImageId}) => {
+    return (
+        <div className="custom_card">
             <div className="img_container">
                 <img src={img_url+cloudinaryImageId}
-                    alt="res_image" width="100%"/>
+                    alt={name} width="100%" height="100%" />
             </div>
-            <div className="px-2">{name}</div>
-            <div className="px-2">⭐{rating}</div>
-            <div className="px-2">{cuisines.join(", ")}</div>
-            <div className="px-2">{location}</div>
+            <div className="px-2">
+                <h6 className="my-1">{name}</h6>
+                <h6 style={{width:"max-content"}} className="text-white bg-success p-1">⭐{avgRating}</h6>
+                <h6 className="text-secondary">{cuisines.join(", ")}</h6>
+                <h6 className="text-secondary">{locality}</h6>
+            </div>
         </div>
     )
 }
-
 
 export default Restaurantcard;
