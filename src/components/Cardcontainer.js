@@ -5,9 +5,21 @@ import Searchbar from "./Searchbar";
 
 
 const Cardcontainer = () => {
-    const [newRestaurant, setNewRestaurant] = useState(restaurantList);
-    const [masterRestaurant] = useState(restaurantList);
+    const [newRestaurant, setNewRestaurant] = useState([]);
+    const [masterRestaurant, setMasterRestaurant] = useState([]);
 
+    const getRestaurants = async() => {
+        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.0759837&lng=72.8776559&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const json = await data.json();
+        console.log("response data", json);
+        setNewRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants); 
+        setMasterRestaurant(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        console.log("masterRestaurant", json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    }
+
+    useEffect(() =>{
+        getRestaurants();
+    }, [])
     
 
     const handleClick =()=>{
