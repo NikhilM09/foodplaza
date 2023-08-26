@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import restaurantList from '../utils/dummyData';
 
 const Searchbar = ({collection, updater}) => {
     const [searchText, setSearchText] = useState("");
@@ -7,9 +6,12 @@ const Searchbar = ({collection, updater}) => {
        const filteredRestaurants = collection.filter((restaurant)=>restaurant?.info?.name.toLowerCase().includes(searchText.toLowerCase()));
        updater(filteredRestaurants);
     }
+    
     useEffect(()=>{
         console.log("useEffect is called");
     },[]);
+
+
     console.log("component is rendered");
     return(
         <div className="container py-4 d-flex justify-content-center">
