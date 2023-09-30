@@ -5,20 +5,31 @@ import Cart from "./Cart";
 import Contact from "./Contact";
 import Body from "./Body";
 import ErrorElement from "./ErrorElement";
+import Menu from "./Menu";
+import {lazy, Suspense} from 'react';
+import {useState} from 'react'
 
-const appRouter = createBrowserRouter([
+const Instamart = lazy(()=>import("./Instamart"))
+
+const AppRouter = createBrowserRouter([
     {
         path: '/',
-        element: <App/>,
+        element: <App userDetails={{name:'nikhil', location:'mumbai'}}/>,
         errorElement: <ErrorElement/>,
         children: [
             {
                 path:"",
-                element : <Body/> 
+                element : <Body userDetails={{name:'nikhil', location:'mumbai'}}/> 
             },
             {
                 path:"about",
-                element : <About/> 
+                element : <About/> ,
+                // children: [
+                //     {
+                //         path:"profile",
+                //         element : <ProfileClass/>
+                //     },
+                // ]
             },
             {
                 path:"contact",
@@ -27,13 +38,21 @@ const appRouter = createBrowserRouter([
             {
                 path:"cart",
                 element : <Cart/>
+            },
+            {
+                path:":id",
+                element : <Menu/>
+            },
+            {
+                path:"instamart",
+                element : <Suspense fallback={<h1 className="text-danger">Instamart is loading</h1>}><Instamart/></Suspense>
             }
         ]
         }
 ]);
 
 
-export default appRouter;
+export default AppRouter;
 
 
 

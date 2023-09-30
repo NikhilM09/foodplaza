@@ -1,8 +1,8 @@
 import Cardcontainer from "./Cardcontainer";
 
-const Body = () =>{
+const Body = ({userDetails}) =>{
     return(
-        <Cardcontainer/>
+        <Cardcontainer userDetails={{name:'nikhil', location:'mumbai'}}/>
     )
 }
 

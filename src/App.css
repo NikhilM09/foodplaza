@@ -17,6 +17,10 @@
   border-radius:10px;
 }
 
+.dark .custom_card{
+background-color:black;
+}
+
 .custom_input{
   width:100%;
   max-width:335px;
